@@ -15,15 +15,14 @@ Future refreshFavorites() async {
   favorites.clear();
   Map<String, IconData> allIcons = new IconsList().allIcons;
 
-  await PersistenceService.instance.readAllFavorites().then((value) {
-    value.forEach((element) {
+  List<String> favs = await PersistenceService.instance.readAllFavorites();
 
-      String modifiedKey = element.substring(1, element.length-1);
+  favs.forEach((element) {
+    String modifiedKey = element.substring(1, element.length - 1);
 
-      if (allIcons[modifiedKey] != null) {
-        favorites.addAll(Map.of({modifiedKey: allIcons[modifiedKey]}));
-      }
-    });
+    if (allIcons[modifiedKey] != null) {
+      favorites.addAll(Map.of({modifiedKey: allIcons[modifiedKey]}));
+    }
   });
 }
 
@@ -62,8 +61,8 @@ class MyApp extends StatelessWidget {
 
 const List<Tab> tabs = <Tab>[
   Tab(icon: Icon(Icons.favorite,
-    color: PolyglotColorScheme.textColor,
-    size: 30.0)),
+      color: PolyglotColorScheme.textColor,
+      size: 30.0)),
   Tab(icon: Icon(Icons.collections,
       color: PolyglotColorScheme.textColor,
       size: 30.0)),
@@ -78,7 +77,6 @@ class MyStatelessWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return MainTabView();
   }
 }

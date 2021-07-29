@@ -57,8 +57,10 @@ class MainTabViewState extends State<MainTabView> {
   }
 
   void handleFavouriteChange() async {
+    await refreshFavorites();
+
     setState(() {
-      refreshFavorites();
+      Navigator.of(context, rootNavigator: true).pop();
     });
   }
 

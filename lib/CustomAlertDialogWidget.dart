@@ -55,7 +55,6 @@ class CustomAlertDialogWidgetState extends State<CustomAlertDialogWidget> {
     setState(() {
       isLoading = false;
       favouriteIcon = favoriteState;
-      Navigator.of(context, rootNavigator: true).pop();
     });
   }
 

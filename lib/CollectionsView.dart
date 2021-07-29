@@ -221,7 +221,7 @@ class EditCollectionViewWidgetState extends State<EditCollectionViewWidget> {
                   color: PolyglotColorScheme.backgroundAppBarColor,
                   size: 40,
                 ),
-                padding: const EdgeInsets.fromLTRB(0, 2, 0, 50),
+                padding: const EdgeInsets.fromLTRB(0, 2, 0, 30),
               ),
             ],
           ),
