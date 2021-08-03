@@ -84,7 +84,7 @@ class PersistenceService {
     final db = await instance.database;
 
     final result =
-        await db.rawQuery('SELECT $key FROM $tableFavorite limit 30');
+        await db.rawQuery('SELECT $key FROM $tableFavorite');
 
     return result.map((e) => e.values.toString()).toList();
   }

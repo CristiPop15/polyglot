@@ -88,6 +88,8 @@ class ImagesGridView extends StatelessWidget {
                   }).toList(),
                 ),
               )
-            ])));
+            ])
+        )
+    );
   }
 }
