@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'IconsList.dart';
-import 'PolyglotColorScheme.dart';
+import 'Constants.dart';
 
 // ignore: must_be_immutable
 class AllIconsViewWidget extends StatefulWidget {
@@ -65,7 +65,7 @@ class ImagesGridView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-            color: PolyglotColorScheme.backgroundColor,
+            color: ColorsScheme.backgroundColor,
             child: Column(children: [
               Container(
                   padding: EdgeInsets.all(16),
@@ -81,7 +81,7 @@ class ImagesGridView extends StatelessWidget {
                       alignment: Alignment.center,
                       child: IconButton(
                           iconSize: 40,
-                          color: PolyglotColorScheme.iconColor,
+                          color: ColorsScheme.iconColor,
                           onPressed: () => onEventCallback(value),
                           icon: Icon(value.value)),
                     );

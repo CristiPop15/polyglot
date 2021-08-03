@@ -6,7 +6,7 @@ import 'CustomAlertDialogWidget.dart';
 import 'FavoritesView.dart';
 import 'IconsCollection.dart';
 import 'IconsList.dart';
-import 'PolyglotColorScheme.dart';
+import 'Constants.dart';
 import 'main.dart';
 import 'PersistenceService.dart';
 
@@ -81,15 +81,11 @@ class MainTabViewState extends State<MainTabView> {
         return Scaffold(
             appBar: AppBar(
               centerTitle: true,
-              title: Text("P o l y g l o t",
-                  style: TextStyle(
-                      color: PolyglotColorScheme.textColor,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "Finger",
-                      fontSize: 24)),
-              backgroundColor: PolyglotColorScheme.backgroundAppBarColor,
+              title: Text(TextConstants.title,
+                  style: FontsConstants.mainStyle),
+              backgroundColor: ColorsScheme.backgroundAppBarColor,
               bottom: TabBar(
-                indicatorColor: PolyglotColorScheme.textColor,
+                indicatorColor: ColorsScheme.textColor,
                 tabs: tabs,
               ),
             ),
@@ -97,21 +93,21 @@ class MainTabViewState extends State<MainTabView> {
               //favourites
               favorites.isEmpty
                   ? Container(
-                      color: PolyglotColorScheme.backgroundColor,
+                      color: ColorsScheme.backgroundColor,
                       child: Icon(Icons.favorite,
-                          color: PolyglotColorScheme.textColor, size: 50.0))
+                          color: ColorsScheme.textColor, size: 50.0))
                   : FavouritesViewWidget(handleFavouriteChange),
 
               // list
               collections.isEmpty
                   ? Container(
                       child: Scaffold(
-                          backgroundColor: PolyglotColorScheme.backgroundColor,
+                          backgroundColor: ColorsScheme.backgroundColor,
                           body: Container(
-                            color: PolyglotColorScheme.backgroundColor,
+                            color: ColorsScheme.backgroundColor,
                             alignment: Alignment.center,
                             child: Icon(Icons.collections,
-                                color: PolyglotColorScheme.textColor,
+                                color: ColorsScheme.textColor,
                                 size: 50.0),
                           ),
                           floatingActionButton: FloatingActionButton(
@@ -126,10 +122,10 @@ class MainTabViewState extends State<MainTabView> {
                             },
                             child: const Icon(
                               Icons.add,
-                              color: PolyglotColorScheme.textColor,
+                              color: ColorsScheme.textColor,
                             ),
                             backgroundColor:
-                                PolyglotColorScheme.backgroundAppBarColor,
+                                ColorsScheme.backgroundAppBarColor,
                           )),
                     )
                   : CollectionsViewWidget(handleNewCollectionAdded,
@@ -138,9 +134,9 @@ class MainTabViewState extends State<MainTabView> {
               //All view
               IconsList().allIcons.isEmpty
                   ? Container(
-                      color: PolyglotColorScheme.backgroundColor,
+                      color: ColorsScheme.backgroundColor,
                       child: Icon(Icons.all_inclusive_rounded,
-                          color: PolyglotColorScheme.textColor, size: 50.0))
+                          color: ColorsScheme.textColor, size: 50.0))
                   : AllIconsViewWidget((MapEntry<String, IconData> entry) {
                       showDialog(
                         context: context,

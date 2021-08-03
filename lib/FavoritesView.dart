@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'CustomAlertDialogWidget.dart';
-import 'PolyglotColorScheme.dart';
+import 'Constants.dart';
 import 'main.dart';
 
 
@@ -48,7 +48,7 @@ class ImagesGridView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-            color: PolyglotColorScheme.backgroundColor,
+            color: ColorsScheme.backgroundColor,
             child: Column(children: [
               Expanded(
                 child: GridView.count(
@@ -59,7 +59,7 @@ class ImagesGridView extends StatelessWidget {
                       alignment: Alignment.center,
                       child: IconButton(
                           iconSize: 40,
-                          color: PolyglotColorScheme.iconColor,
+                          color: ColorsScheme.iconColor,
                           onPressed: () {
                             showDialog(
                               context: context,

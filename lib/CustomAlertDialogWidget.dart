@@ -2,7 +2,7 @@ import 'package:first_project/PersistenceService.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'PolyglotColorScheme.dart';
+import 'Constants.dart';
 import 'main.dart';
 
 class CustomAlertDialogWidget extends StatefulWidget {
@@ -64,19 +64,19 @@ class CustomAlertDialogWidgetState extends State<CustomAlertDialogWidget> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(30)),
         ),
-        backgroundColor: PolyglotColorScheme.backgroundColor,
+        backgroundColor: ColorsScheme.backgroundColor,
         title: new Column(children: <Widget>[
           new Text(widget.selectedIconEntry.key),
           new Container(
               child: IconButton(
                 icon: new Icon(favouriteIcon,
-                    size: 40.0, color: PolyglotColorScheme.textColor),
+                    size: 40.0, color: ColorsScheme.textColor),
                 onPressed: () {
                   handleTap(widget.selectedIconEntry);
                 },
               ))
         ]),
         content: new Icon(widget.selectedIconEntry.value,
-            size: 170, color: PolyglotColorScheme.iconColor));
+            size: 170, color: ColorsScheme.iconColor));
   }
 }

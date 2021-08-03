@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:first_project/IconsCollection.dart';
 import 'package:first_project/MainTabView.dart';
-import 'package:first_project/PolyglotColorScheme.dart';
 import 'package:flutter/material.dart';
 
+import 'Constants.dart';
 import 'IconsList.dart';
 import 'PersistenceService.dart';
 
@@ -48,12 +48,10 @@ Future main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  static const String _title = 'Polyglot';
-
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: _title,
+      title: TextConstants.name,
       home: MyStatelessWidget(),
     );
   }
@@ -61,13 +59,13 @@ class MyApp extends StatelessWidget {
 
 const List<Tab> tabs = <Tab>[
   Tab(icon: Icon(Icons.favorite,
-      color: PolyglotColorScheme.textColor,
+      color: ColorsScheme.textColor,
       size: 30.0)),
   Tab(icon: Icon(Icons.collections,
-      color: PolyglotColorScheme.textColor,
+      color: ColorsScheme.textColor,
       size: 30.0)),
   Tab(icon: Icon(Icons.all_inclusive_rounded,
-      color: PolyglotColorScheme.textColor,
+      color: ColorsScheme.textColor,
       size: 30.0)),
 ];
 

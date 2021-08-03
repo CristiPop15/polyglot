@@ -1,5 +1,5 @@
 import 'package:first_project/AllIconsView.dart';
-import 'package:first_project/PolyglotColorScheme.dart';
+import 'package:first_project/Constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'IconsCollection.dart';
@@ -31,7 +31,7 @@ class CollectionsViewWidgetState extends State<CollectionsViewWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: PolyglotColorScheme.backgroundColor,
+      backgroundColor: ColorsScheme.backgroundColor,
       body: ListView.separated(
           padding: const EdgeInsets.all(8),
           itemCount: collections.length,
@@ -43,12 +43,12 @@ class CollectionsViewWidgetState extends State<CollectionsViewWidget> {
                     MaterialPageRoute(builder: (context) => EditCollectionViewWidget(widget.onCollectionUpdate, collections[index])),
                   );
                 },
-                tileColor: PolyglotColorScheme.tileColor,
+                tileColor: ColorsScheme.tileColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(300)),
                 ),
                 trailing: new IconButton(
-                  icon: new Icon(Icons.delete_outline, color: PolyglotColorScheme.removeButtonColor,),
+                  icon: new Icon(Icons.delete_outline, color: ColorsScheme.removeButtonColor,),
                   onPressed: () {
                     showDialog(context: context, builder: (BuildContext context) =>
                         Center(child: CircularProgressIndicator())
@@ -62,16 +62,12 @@ class CollectionsViewWidgetState extends State<CollectionsViewWidget> {
                   collections[index].collections.values.first
                       :
                   Icons.collections,
-                  color: PolyglotColorScheme.iconColor,
+                  color: ColorsScheme.iconColor,
                   size: 30,
                 ),
                 title: Text(
                   '${collections[index].name}',
-                  style: TextStyle(
-                      color: PolyglotColorScheme.textColor,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "Finger",
-                      fontSize: 14),
+                  style: FontsConstants.collectionTileStyle,
                 ));
           },
           separatorBuilder: (BuildContext context, int index) =>
@@ -85,9 +81,9 @@ class CollectionsViewWidgetState extends State<CollectionsViewWidget> {
         },
         child: const Icon(
           Icons.add,
-          color: PolyglotColorScheme.textColor,
+          color: ColorsScheme.textColor,
         ),
-        backgroundColor: PolyglotColorScheme.backgroundAppBarColor,
+        backgroundColor: ColorsScheme.backgroundAppBarColor,
       ),
     );
   }
@@ -147,16 +143,12 @@ class EditCollectionViewWidgetState extends State<EditCollectionViewWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: PolyglotColorScheme.backgroundColor,
+        backgroundColor: ColorsScheme.backgroundColor,
         appBar: AppBar(
           centerTitle: true,
-          title: Text("P o l y g l o t",
-              style: TextStyle(
-                  color: PolyglotColorScheme.textColor,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: "Finger",
-                  fontSize: 24)),
-          backgroundColor: PolyglotColorScheme.backgroundAppBarColor,
+          title: Text(TextConstants.title,
+              style: FontsConstants.mainStyle),
+          backgroundColor: ColorsScheme.backgroundAppBarColor,
         ),
         body: Form(
           key: collectionNameKey,
@@ -164,12 +156,8 @@ class EditCollectionViewWidgetState extends State<EditCollectionViewWidget> {
             children: [
               Container(
                   padding: const EdgeInsets.all(8),
-                  child: Text("Create your collection",
-                      style: TextStyle(
-                          color: PolyglotColorScheme.backgroundAppBarColor,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: "Finger",
-                          fontSize: 16))),
+                  child: Text(TextConstants.collectionCreation,
+                      style: FontsConstants.collectionActionStyle)),
               Container(
                 padding: const EdgeInsets.all(8),
                 child: buildCustomTextFormField(),
@@ -218,7 +206,7 @@ class EditCollectionViewWidgetState extends State<EditCollectionViewWidget> {
                 },
                 icon: new Icon(
                   Icons.save,
-                  color: PolyglotColorScheme.backgroundAppBarColor,
+                  color: ColorsScheme.backgroundAppBarColor,
                   size: 40,
                 ),
                 padding: const EdgeInsets.fromLTRB(0, 2, 0, 30),
@@ -240,42 +228,31 @@ class EditCollectionViewWidgetState extends State<EditCollectionViewWidget> {
     return TextFormField(
       validator: collectionNameValidator,
       controller: collectionNameController,
-      style: TextStyle(
-          color: PolyglotColorScheme.backgroundAppBarColor,
-          fontWeight: FontWeight.bold,
-          fontFamily: "Finger",
-          fontSize: 13),
-      cursorColor: PolyglotColorScheme.tileColor,
+      style: FontsConstants.formStyle,
+      cursorColor: ColorsScheme.tileColor,
       decoration: new InputDecoration(
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(300)),
             borderSide: BorderSide(
-                color: PolyglotColorScheme.borderFocused, width: 1.5),
+                color: ColorsScheme.borderFocused, width: 1.5),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(300)),
             borderSide:
-                BorderSide(color: PolyglotColorScheme.tileColor, width: 1.5),
+                BorderSide(color: ColorsScheme.tileColor, width: 1.5),
           ),
-          hintText: 'Collection name',
-          hintStyle: TextStyle(
-              fontFamily: "Finger",
-              color: PolyglotColorScheme.hintTextColor,
-              fontSize: 13),
+          hintText: TextConstants.collectionHint,
+          hintStyle: FontsConstants.hintStyle,
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(300)),
             borderSide: BorderSide(
-                color: PolyglotColorScheme.borderFocused, width: 1.5),
+                color: ColorsScheme.borderFocused, width: 1.5),
           ),
-          errorStyle: TextStyle(
-              color: PolyglotColorScheme.removeButtonColor,
-              fontWeight: FontWeight.bold,
-              fontFamily: "Finger",
-              fontSize: 10),
+          errorStyle: FontsConstants.errorStyle,
           focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(300)),
             borderSide: BorderSide(
-                color: PolyglotColorScheme.borderFocused, width: 1.5),
+                color: ColorsScheme.borderFocused, width: 1.5),
           )
       ),
     );
@@ -283,15 +260,15 @@ class EditCollectionViewWidgetState extends State<EditCollectionViewWidget> {
 
   String? collectionNameValidator(value) {
     if (value == null || value.isEmpty) {
-      return "Please enter collection name";
+      return TextConstants.collectionNameError;
     }
     if (value.length > 25) {
-      return "Please limit to 25 characters";
+      return TextConstants.collectionNameLimitError;
     }
 
     RegExp regex = new RegExp('^[a-zA-Z0-9_ .-]*\$');
     if (!regex.hasMatch(value)) {
-      return "Unsupported character(s). Please use only alphanumerical, _ and -";
+      return TextConstants.collectionUnsupportedCharacterError;
     }
     return null;
   }
@@ -311,7 +288,7 @@ class CustomIconWithRemovalButton extends StatelessWidget {
         body: Center(
       child: Container(
         padding: const EdgeInsets.all(10),
-        color: PolyglotColorScheme.backgroundColor,
+        color: ColorsScheme.backgroundColor,
         child: Stack(
           alignment: Alignment.topCenter,
           clipBehavior: Clip.none,
@@ -320,7 +297,7 @@ class CustomIconWithRemovalButton extends StatelessWidget {
             Icon(
               icon.value,
               size: iconSize,
-              color: PolyglotColorScheme.iconColor,
+              color: ColorsScheme.iconColor,
             ),
             Positioned(
                 top: -5,
@@ -332,7 +309,7 @@ class CustomIconWithRemovalButton extends StatelessWidget {
                     child: Icon(
                       Icons.delete_forever,
                       size: 20,
-                      color: PolyglotColorScheme.removeButtonColor,
+                      color: ColorsScheme.removeButtonColor,
                     ))),
           ],
         ),
