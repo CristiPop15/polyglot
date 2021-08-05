@@ -1,4 +1,4 @@
-import 'package:first_project/IconsList.dart';
+import 'package:first_project/IconsMap.dart';
 import 'package:flutter/cupertino.dart';
 
 class IconsCollection {
@@ -14,7 +14,7 @@ class IconsCollection {
   }
 
   IconsCollection addFromKey(String key) {
-    collections[key] = new IconsList().allIcons[key];
+    collections[key] = new IconsMap().allIcons[key];
     return this;
   }
 

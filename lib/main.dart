@@ -5,7 +5,7 @@ import 'package:first_project/MainTabView.dart';
 import 'package:flutter/material.dart';
 
 import 'Constants.dart';
-import 'IconsList.dart';
+import 'IconsMap.dart';
 import 'PersistenceService.dart';
 
 late Map<String, IconData?> favorites = {};
@@ -13,7 +13,7 @@ late List<IconsCollection> allCollections = [];
 
 Future refreshFavorites() async {
   favorites.clear();
-  Map<String, IconData> allIcons = new IconsList().allIcons;
+  Map<String, IconData> allIcons = new IconsMap().allIcons;
 
   List<String> favs = await PersistenceService.instance.readAllFavorites();
 

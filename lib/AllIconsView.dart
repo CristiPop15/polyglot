@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'IconsList.dart';
+import 'IconsMap.dart';
 import 'Constants.dart';
 
 // ignore: must_be_immutable
@@ -16,7 +16,7 @@ class AllIconsViewWidget extends StatefulWidget {
 
 class AllIconsViewWidgetState extends State<AllIconsViewWidget> {
 
-  Map<String, IconData> iconsByName = Map.from(new IconsList().allIcons);
+  Map<String, IconData> iconsByName = Map.from(new IconsMap().allIcons);
 
   void handleQueryChanged(Map<String, IconData> values) {
     setState(() {});
@@ -52,11 +52,11 @@ class ImagesGridView extends StatelessWidget {
   void handleQuery(String query) {
     if (query.isEmpty) {
       icons.clear();
-      icons.addAll(IconsList().allIcons);
+      icons.addAll(IconsMap().allIcons);
       onQuerySearchItems(icons);
     } else {
       icons.clear();
-      icons.addAll(IconsList().allIcons);
+      icons.addAll(IconsMap().allIcons);
       icons.removeWhere((key, value) => !key.contains(query.toLowerCase()));
       onQuerySearchItems(icons);
     }

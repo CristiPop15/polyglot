@@ -5,7 +5,7 @@ import 'AllIconsView.dart';
 import 'CustomAlertDialogWidget.dart';
 import 'FavoritesView.dart';
 import 'IconsCollection.dart';
-import 'IconsList.dart';
+import 'IconsMap.dart';
 import 'Constants.dart';
 import 'main.dart';
 import 'PersistenceService.dart';
@@ -132,7 +132,7 @@ class MainTabViewState extends State<MainTabView> {
                       handleCollectionRemoval, handleCollectionUpdate),
 
               //All view
-              IconsList().allIcons.isEmpty
+              IconsMap().allIcons.isEmpty
                   ? Container(
                       color: ColorsScheme.backgroundColor,
                       child: Icon(Icons.all_inclusive_rounded,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class IconsList {
+class IconsMap {
   Map<String, IconData> allIcons = {
 
     //a
@@ -24,7 +24,6 @@ class IconsList {
     "adb": Icons.adb,
     "add": Icons.add,
     "add_a_photo": Icons.add_a_photo,
-    "add_a_photo_outlined": Icons.add_a_photo_outlined,
     "add_alarm": Icons.add_alarm,
     "add_alert": Icons.add_alert,
     "add_box": Icons.add_box,
@@ -61,8 +60,6 @@ class IconsList {
     "airplane_ticket" : Icons.airplane_ticket,
     "airplanemode_active" : Icons.airplanemode_active,
     "airplanemode_inactive" : Icons.airplanemode_inactive,
-    "airplanemode_off" : Icons.airplanemode_off,
-    "airplanemode_on" : Icons.airplanemode_on,
     "airplay" : Icons.airplay,
     "airport_shuttle" : Icons.airport_shuttle,
     "alarm_off" : Icons.alarm_off,

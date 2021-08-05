@@ -1,4 +1,4 @@
-import 'package:first_project/IconsList.dart';
+import 'package:first_project/IconsMap.dart';
 import 'package:first_project/PersistenceService.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
