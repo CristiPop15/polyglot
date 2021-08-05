@@ -1,5 +1,6 @@
 import 'package:first_project/AllIconsView.dart';
 import 'package:first_project/Constants.dart';
+import 'package:first_project/CustomAlertDialogWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'IconsCollection.dart';
@@ -41,6 +42,12 @@ class CollectionsViewWidgetState extends State<CollectionsViewWidget> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => EditCollectionViewWidget(widget.onCollectionUpdate, collections[index])),
+                  );
+                },
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CollectionView(collections[index])),
                   );
                 },
                 tileColor: ColorsScheme.tileColor,
@@ -316,4 +323,52 @@ class CustomIconWithRemovalButton extends StatelessWidget {
       ),
     ));
   }
+}
+
+// ignore: must_be_immutable
+class CollectionView extends StatelessWidget {
+
+  IconsCollection? editIconsCollection;
+
+  CollectionView(this.editIconsCollection);
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: ColorsScheme.backgroundColor,
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(TextConstants.title,
+              style: FontsConstants.mainStyle),
+          backgroundColor: ColorsScheme.backgroundAppBarColor,
+        ),
+        body: Container(
+            color: ColorsScheme.backgroundColor,
+            child: Column(children: [
+              Container(
+                child: Text(editIconsCollection!.name, style: FontsConstants.titleStyle, ), padding: EdgeInsets.all(10),),
+              Expanded(
+                child: GridView.count(
+                  crossAxisCount: 4,
+                  childAspectRatio: 2,
+                  children: editIconsCollection!.collections.entries.map((value) {
+                    return Container(
+                      alignment: Alignment.center,
+                      child: IconButton(
+                          iconSize: 40,
+                          color: ColorsScheme.iconColor,
+                          onPressed: () {
+                            showDialog(context: context, builder:
+                                (BuildContext context) =>
+                                    new CustomAlertDialogCollectionWidget(selectedIconEntry: value, collectionIcons: editIconsCollection!.collections));
+                          },
+                          icon: Icon(value.value)),
+                    );
+                  }).toList(),
+                ),
+              )
+            ])
+        )
+    );
+  }
+
 }

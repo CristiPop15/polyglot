@@ -1,22 +1,25 @@
+import 'package:first_project/IconsList.dart';
 import 'package:first_project/PersistenceService.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:swipe_to/swipe_to.dart';
 
 import 'Constants.dart';
 import 'main.dart';
 
-class CustomAlertDialogWidget extends StatefulWidget {
+class CustomAlertDialogFavoriteWidget extends StatefulWidget {
 
   final MapEntry<String, IconData?> selectedIconEntry;
   final Function onRefresh;
 
-  const CustomAlertDialogWidget({required this.selectedIconEntry, required this.onRefresh}) : super();
+  const CustomAlertDialogFavoriteWidget({required this.selectedIconEntry, required this.onRefresh}) : super();
 
   @override
-  CustomAlertDialogWidgetState createState() => CustomAlertDialogWidgetState();
+  CustomAlertDialogFavoriteWidgetState createState() => CustomAlertDialogFavoriteWidgetState();
 }
 
-class CustomAlertDialogWidgetState extends State<CustomAlertDialogWidget> {
+class CustomAlertDialogFavoriteWidgetState extends State<CustomAlertDialogFavoriteWidget> {
 
   late IconData favouriteIcon;
   late bool isLoading = false;
@@ -77,6 +80,73 @@ class CustomAlertDialogWidgetState extends State<CustomAlertDialogWidget> {
               ))
         ]),
         content: new Icon(widget.selectedIconEntry.value,
-            size: 170, color: ColorsScheme.iconColor));
+            size: 200, color: ColorsScheme.iconColor));
+  }
+}
+
+class CustomAlertDialogCollectionWidget extends StatefulWidget {
+
+  final MapEntry<String, IconData?> selectedIconEntry;
+  final Map<String, IconData?> collectionIcons;
+
+  const CustomAlertDialogCollectionWidget({required this.selectedIconEntry, required this.collectionIcons}) : super();
+
+  @override
+  CustomAlertDialogCollectionWidgetState createState() => CustomAlertDialogCollectionWidgetState();
+}
+
+class CustomAlertDialogCollectionWidgetState extends State<CustomAlertDialogCollectionWidget> {
+
+  late MapEntry<String, IconData?> selection;
+  late int size;
+  late int currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    selection = widget.selectedIconEntry;
+    size = widget.collectionIcons.length;
+    for(int i = 0; i < size; i++) {
+      if (widget.collectionIcons.entries.elementAt(i).key == selection.key) {
+        currentIndex = i;
+        return;
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(30)),
+        ),
+        backgroundColor: ColorsScheme.backgroundColor,
+        title: SwipeTo(
+          child: new Column(children: <Widget>[
+            new Text(selection.key),
+            new Icon(selection.value,
+                size: 200, color: ColorsScheme.iconColor)
+          ]),
+          iconOnLeftSwipe: Icons.arrow_forward,
+          iconOnRightSwipe: Icons.arrow_back,
+          onLeftSwipe: () {
+            setState(() {
+              if (currentIndex < size-1) {
+                ++currentIndex;
+                selection = widget.collectionIcons.entries.elementAt(currentIndex);
+              }
+
+            });
+          },
+          onRightSwipe: () {
+            setState(() {
+              if (currentIndex > 0) {
+                --currentIndex;
+                selection = widget.collectionIcons.entries.elementAt(currentIndex);
+              }
+            });
+            },
+        )
+        );
   }
 }

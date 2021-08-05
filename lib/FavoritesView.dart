@@ -64,7 +64,7 @@ class ImagesGridView extends StatelessWidget {
                             showDialog(
                               context: context,
                               builder: (BuildContext context) =>
-                                  CustomAlertDialogWidget(selectedIconEntry: value, onRefresh: onFavouriteChange),
+                                  CustomAlertDialogFavoriteWidget(selectedIconEntry: value, onRefresh: onFavouriteChange),
                             );
                           },
                           icon: Icon(value.value)),

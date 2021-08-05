@@ -141,7 +141,7 @@ class MainTabViewState extends State<MainTabView> {
                       showDialog(
                         context: context,
                         builder: (BuildContext context) =>
-                            CustomAlertDialogWidget(
+                            CustomAlertDialogFavoriteWidget(
                                 selectedIconEntry: entry,
                                 onRefresh: handleFavouriteChange),
                       );

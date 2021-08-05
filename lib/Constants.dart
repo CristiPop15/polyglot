@@ -20,7 +20,7 @@ class TextConstants {
   static const String collectionHint = "Collection name";
   static const String collectionNameError = "Please enter collection name";
   static const String collectionNameLimitError = "Please limit to 25 characters";
-  static const String collectionUnsupportedCharacterError = "Use only alphanumerical, underscore(_) and dash(-) characters";
+  static const String collectionUnsupportedCharacterError = "Only alphanumerical, underscore and dash";
 }
 
 class FontsConstants {
@@ -34,7 +34,7 @@ class FontsConstants {
       color: ColorsScheme.removeButtonColor,
       fontWeight: FontWeight.bold,
       fontFamily: "Finger",
-      fontSize: 10);
+      fontSize: 12);
 
   static const TextStyle collectionTileStyle = TextStyle(
       color: ColorsScheme.textColor,
@@ -58,4 +58,10 @@ class FontsConstants {
       fontWeight: FontWeight.bold,
       fontFamily: "Finger",
       fontSize: 13);
+
+  static const TextStyle titleStyle = TextStyle(
+      color: ColorsScheme.backgroundAppBarColor,
+      fontWeight: FontWeight.bold,
+      fontFamily: "Finger",
+      fontSize: 18);
 }
