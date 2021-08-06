@@ -95,7 +95,7 @@ class PersistenceService {
     final id = await db.insert(tableCollectionName, {name : newCollection.name});
 
     newCollection.collections.keys.forEach((element) async {
-      await db.insert(tableCollection, {nameId: id, key: element});
+      await db.insert(tableCollection, {nameId: id, key: element.key});
     });
 
     return id;

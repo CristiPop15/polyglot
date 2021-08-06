@@ -4,6 +4,7 @@ import 'package:first_project/CustomAlertDialogWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'IconsCollection.dart';
+import 'TranslationService.dart';
 import 'main.dart';
 
 // ignore: must_be_immutable
@@ -100,7 +101,7 @@ class CollectionsViewWidgetState extends State<CollectionsViewWidget> {
 class EditCollectionViewWidget extends StatefulWidget {
 
   IconsCollection? editIconsCollection;
-  Map<String, IconData?> newCollection = {};
+  Map<Translation, IconData?> newCollection = {};
   ValueChanged<IconsCollection> onCollectionChange;
 
   EditCollectionViewWidget(this.onCollectionChange, this.editIconsCollection);
@@ -135,7 +136,7 @@ class EditCollectionViewWidgetState extends State<EditCollectionViewWidget> {
     needsScroll = true;
   }
 
-  void handleIconChange(MapEntry<String, IconData?> iconChanged) {
+  void handleIconChange(MapEntry<Translation, IconData?> iconChanged) {
     setState(() {
       if (widget.newCollection.containsKey(iconChanged.key)) {
         widget.newCollection.remove(iconChanged.key);
@@ -163,7 +164,7 @@ class EditCollectionViewWidgetState extends State<EditCollectionViewWidget> {
             children: [
               Container(
                   padding: const EdgeInsets.all(8),
-                  child: Text(TextConstants.collectionCreation,
+                  child: Text(Translation(TextConstants.collectionCreation).translation,
                       style: FontsConstants.collectionActionStyle)),
               Container(
                 padding: const EdgeInsets.all(8),
@@ -248,7 +249,7 @@ class EditCollectionViewWidgetState extends State<EditCollectionViewWidget> {
             borderSide:
                 BorderSide(color: ColorsScheme.tileColor, width: 1.5),
           ),
-          hintText: TextConstants.collectionHint,
+          hintText: Translation(TextConstants.collectionHint).translation,
           hintStyle: FontsConstants.hintStyle,
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(300)),
@@ -267,15 +268,15 @@ class EditCollectionViewWidgetState extends State<EditCollectionViewWidget> {
 
   String? collectionNameValidator(value) {
     if (value == null || value.isEmpty) {
-      return TextConstants.collectionNameError;
+      return Translation(TextConstants.collectionNameError).translation;
     }
     if (value.length > 25) {
-      return TextConstants.collectionNameLimitError;
+      return Translation(TextConstants.collectionNameLimitError).translation;
     }
 
     RegExp regex = new RegExp('^[a-zA-Z0-9_ .-]*\$');
     if (!regex.hasMatch(value)) {
-      return TextConstants.collectionUnsupportedCharacterError;
+      return Translation(TextConstants.collectionUnsupportedCharacterError).translation;
     }
     return null;
   }
@@ -283,9 +284,9 @@ class EditCollectionViewWidgetState extends State<EditCollectionViewWidget> {
 
 // ignore: must_be_immutable
 class CustomIconWithRemovalButton extends StatelessWidget {
-  late MapEntry<String, IconData?> icon;
+  late MapEntry<Translation, IconData?> icon;
   double iconSize;
-  ValueChanged<MapEntry<String, IconData?>> onIconChange;
+  ValueChanged<MapEntry<Translation, IconData?>> onIconChange;
 
   CustomIconWithRemovalButton(this.icon, this.iconSize, this.onIconChange);
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'CustomAlertDialogWidget.dart';
 import 'Constants.dart';
+import 'TranslationService.dart';
 import 'main.dart';
 
 
@@ -19,7 +20,7 @@ class FavouritesViewWidget extends StatefulWidget {
 
 class FavouritesViewState extends State<FavouritesViewWidget> {
 
-  late Map<String, IconData?> favoriteIcons;
+  late Map<Translation, IconData?> favoriteIcons;
 
   @override
   void initState() {
@@ -42,7 +43,7 @@ class ImagesGridView extends StatelessWidget {
   ImagesGridView({Key? key, required this.icons, required this.onFavouriteChange})
       : super(key: key);
 
-  final Map<String, IconData?> icons;
+  final Map<Translation, IconData?> icons;
   final Function onFavouriteChange;
 
   Widget build(BuildContext context) {

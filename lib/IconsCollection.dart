@@ -1,29 +1,31 @@
 import 'package:first_project/IconsMap.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'TranslationService.dart';
+
 class IconsCollection {
   int id;
   String name;
-  Map<String, IconData?> collections = {};
+  Map<Translation, IconData?> collections = {};
 
   IconsCollection(this.id, this.name);
 
-  IconsCollection add(MapEntry<String, IconData?> value) {
+  IconsCollection add(MapEntry<Translation, IconData?> value) {
     collections[value.key] = value.value;
     return this;
   }
 
   IconsCollection addFromKey(String key) {
-    collections[key] = new IconsMap().allIcons[key];
+    collections[Translation(key)] = new IconsMap().allIcons[Translation(key)];
     return this;
   }
 
-  IconsCollection addAll(Map<String, IconData?> map) {
+  IconsCollection addAll(Map<Translation, IconData?> map) {
     collections = Map.of(map);
     return this;
   }
 
-  Map<String, IconData?> getIcons() {
+  Map<Translation, IconData?> getIcons() {
     return collections;
   }
 }

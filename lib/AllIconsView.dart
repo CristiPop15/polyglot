@@ -1,3 +1,4 @@
+import 'package:first_project/TranslationService.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'IconsMap.dart';
@@ -6,7 +7,7 @@ import 'Constants.dart';
 // ignore: must_be_immutable
 class AllIconsViewWidget extends StatefulWidget {
 
-  late Function(MapEntry<String, IconData>) onEventCallback;
+  late Function(MapEntry<Translation, IconData>) onEventCallback;
 
   AllIconsViewWidget(this.onEventCallback);
 
@@ -16,9 +17,9 @@ class AllIconsViewWidget extends StatefulWidget {
 
 class AllIconsViewWidgetState extends State<AllIconsViewWidget> {
 
-  Map<String, IconData> iconsByName = Map.from(new IconsMap().allIcons);
+  Map<Translation, IconData> iconsByName = Map.from(new IconsMap().allIcons);
 
-  void handleQueryChanged(Map<String, IconData> values) {
+  void handleQueryChanged(Map<Translation, IconData> values) {
     setState(() {});
   }
 
@@ -45,9 +46,9 @@ class ImagesGridView extends StatelessWidget {
       required this.onEventCallback})
       : super(key: key);
 
-  final Map<String, IconData> icons;
-  final ValueChanged<Map<String, IconData>> onQuerySearchItems;
-  late Function(MapEntry<String, IconData>) onEventCallback;
+  final Map<Translation, IconData> icons;
+  final ValueChanged<Map<Translation, IconData>> onQuerySearchItems;
+  late Function(MapEntry<Translation, IconData>) onEventCallback;
 
   void handleQuery(String query) {
     if (query.isEmpty) {
@@ -57,7 +58,7 @@ class ImagesGridView extends StatelessWidget {
     } else {
       icons.clear();
       icons.addAll(IconsMap().allIcons);
-      icons.removeWhere((key, value) => !key.contains(query.toLowerCase()));
+      icons.removeWhere((key, value) => !key.getTranslation().toLowerCase().contains(query.toLowerCase()));
       onQuerySearchItems(icons);
     }
   }

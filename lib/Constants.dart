@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+import 'TranslationService.dart';
+
 class ColorsScheme {
   static const Color backgroundColor = Color.fromARGB(255, 191, 249, 255);
   static const Color backgroundAppBarColor = Color.fromARGB(255, 0, 166, 203);
@@ -16,11 +18,12 @@ class ColorsScheme {
 class TextConstants {
   static const String title = "P o l y g l o t";
   static const String name = "Polyglot";
-  static const String collectionCreation = "Create your collection";
-  static const String collectionHint = "Collection name";
-  static const String collectionNameError = "Please enter collection name";
-  static const String collectionNameLimitError = "Please limit to 25 characters";
-  static const String collectionUnsupportedCharacterError = "Only alphanumerical, underscore and dash";
+
+  static String collectionCreation = "create_collection";
+  static String collectionHint = "collection_hint";
+  static String collectionNameError = "collection_name_empty";
+  static String collectionNameLimitError = "collection_name_exceeding";
+  static String collectionUnsupportedCharacterError = "collection_name_error";
 }
 
 class FontsConstants {

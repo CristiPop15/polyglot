@@ -6,11 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:swipe_to/swipe_to.dart';
 
 import 'Constants.dart';
+import 'TranslationService.dart';
 import 'main.dart';
 
 class CustomAlertDialogFavoriteWidget extends StatefulWidget {
 
-  final MapEntry<String, IconData?> selectedIconEntry;
+  final MapEntry<Translation, IconData?> selectedIconEntry;
   final Function onRefresh;
 
   const CustomAlertDialogFavoriteWidget({required this.selectedIconEntry, required this.onRefresh}) : super();
@@ -33,19 +34,19 @@ class CustomAlertDialogFavoriteWidgetState extends State<CustomAlertDialogFavori
         : Icons.favorite_outline;
   }
 
-  void handleTap(MapEntry<String, IconData?> iconEntry) async {
+  void handleTap(MapEntry<Translation, IconData?> iconEntry) async {
     showDialog(context: context, builder: (BuildContext context) =>
         Center(child: CircularProgressIndicator())
     );
 
-    String key = iconEntry.key;
+    String key = iconEntry.key.key;
     IconData favoriteState;
 
-    if (iconEntry.key.endsWith(")")) {
-      key = iconEntry.key.substring(1, iconEntry.key.length - 1);
+    if (iconEntry.key.key.endsWith(")")) {
+      key = iconEntry.key.key.substring(1, iconEntry.key.key.length - 1);
     }
 
-    if (favorites.containsKey(key)) {
+    if (favorites.containsKey(Translation(key))) {
       await PersistenceService.instance.deleteFavorites(key);
       favoriteState = Icons.favorite_outline;
     } else {
@@ -69,7 +70,7 @@ class CustomAlertDialogFavoriteWidgetState extends State<CustomAlertDialogFavori
         ),
         backgroundColor: ColorsScheme.backgroundColor,
         title: new Column(children: <Widget>[
-          new Text(widget.selectedIconEntry.key),
+          new Text(widget.selectedIconEntry.key.translation),
           new Container(
               child: IconButton(
                 icon: new Icon(favouriteIcon,
@@ -86,8 +87,8 @@ class CustomAlertDialogFavoriteWidgetState extends State<CustomAlertDialogFavori
 
 class CustomAlertDialogCollectionWidget extends StatefulWidget {
 
-  final MapEntry<String, IconData?> selectedIconEntry;
-  final Map<String, IconData?> collectionIcons;
+  final MapEntry<Translation, IconData?> selectedIconEntry;
+  final Map<Translation, IconData?> collectionIcons;
 
   const CustomAlertDialogCollectionWidget({required this.selectedIconEntry, required this.collectionIcons}) : super();
 
@@ -97,7 +98,7 @@ class CustomAlertDialogCollectionWidget extends StatefulWidget {
 
 class CustomAlertDialogCollectionWidgetState extends State<CustomAlertDialogCollectionWidget> {
 
-  late MapEntry<String, IconData?> selection;
+  late MapEntry<Translation, IconData?> selection;
   late int size;
   late int currentIndex = 0;
 
@@ -123,7 +124,7 @@ class CustomAlertDialogCollectionWidgetState extends State<CustomAlertDialogColl
         backgroundColor: ColorsScheme.backgroundColor,
         title: SwipeTo(
           child: new Column(children: <Widget>[
-            new Text(selection.key),
+            new Text(selection.key.translation),
             new Icon(selection.value,
                 size: 200, color: ColorsScheme.iconColor)
           ]),

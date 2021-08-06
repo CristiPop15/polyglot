@@ -7,6 +7,7 @@ import 'FavoritesView.dart';
 import 'IconsCollection.dart';
 import 'IconsMap.dart';
 import 'Constants.dart';
+import 'TranslationService.dart';
 import 'main.dart';
 import 'PersistenceService.dart';
 
@@ -137,7 +138,7 @@ class MainTabViewState extends State<MainTabView> {
                       color: ColorsScheme.backgroundColor,
                       child: Icon(Icons.all_inclusive_rounded,
                           color: ColorsScheme.textColor, size: 50.0))
-                  : AllIconsViewWidget((MapEntry<String, IconData> entry) {
+                  : AllIconsViewWidget((MapEntry<Translation, IconData> entry) {
                       showDialog(
                         context: context,
                         builder: (BuildContext context) =>

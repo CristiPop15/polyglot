@@ -7,18 +7,19 @@ import 'package:flutter/material.dart';
 import 'Constants.dart';
 import 'IconsMap.dart';
 import 'PersistenceService.dart';
+import 'TranslationService.dart';
 
-late Map<String, IconData?> favorites = {};
+late Map<Translation, IconData?> favorites = {};
 late List<IconsCollection> allCollections = [];
 
 Future refreshFavorites() async {
   favorites.clear();
-  Map<String, IconData> allIcons = new IconsMap().allIcons;
+  Map<Translation, IconData> allIcons = new IconsMap().allIcons;
 
   List<String> favs = await PersistenceService.instance.readAllFavorites();
 
   favs.forEach((element) {
-    String modifiedKey = element.substring(1, element.length - 1);
+    Translation modifiedKey = Translation(element.substring(1, element.length - 1));
 
     if (allIcons[modifiedKey] != null) {
       favorites.addAll(Map.of({modifiedKey: allIcons[modifiedKey]}));
@@ -37,6 +38,7 @@ Future refreshCollections() async {
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  await TranslationService.init();
   await refreshFavorites();
   await refreshCollections();
 
